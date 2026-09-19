@@ -1,0 +1,98 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(ellipse at top, #0c1829 0%, #08111d 60%, #03070d 100%);
+    color: #ffffff;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.font-cursive {
+    font-family: 'Caveat', cursive;
+}
+
+.font-title {
+    font-family: 'Cinzel', serif;
+}
+
+/* Moon styling with multilayer ambient glow */
+.moon {
+    background: #fffdf0;
+    box-shadow: 0 0 35px 12px rgba(255, 248, 200, 0.9), 0 0 100px 30px rgba(255, 220, 130, 0.45);
+}
+
+/* Twinkling stars & light particles canvas */
+#stars-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Golden text glow */
+.text-glow {
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.65), 0 0 35px rgba(255, 180, 0, 0.45);
+}
+
+/* Golden button outline and hover glow */
+.btn-gold {
+    background: rgba(15, 23, 42, 0.85);
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.4);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-gold:hover {
+    box-shadow: 0 0 32px rgba(255, 215, 0, 0.85), inset 0 0 14px rgba(255, 215, 0, 0.5);
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Modal parchment texture card */
+.modal-card {
+    background: #fef9e7;
+    background-image: radial-gradient(#ece0b0 1.2px, transparent 1.2px);
+    background-size: 16px 16px;
+    color: #3d2b1f;
+    box-shadow: 0 25px 65px rgba(0, 0, 0, 0.88), 0 0 40px rgba(255, 215, 0, 0.3);
+}
+
+/* Terracotta Pot styling */
+.pot-rim {
+    background: linear-gradient(180deg, #d36944 0%, #a24425 100%);
+    box-shadow: inset 0 -4px 8px rgba(0,0,0,0.4), 0 8px 20px rgba(0,0,0,0.65);
+}
+
+.pot-body {
+    background: linear-gradient(180deg, #c05734 0%, #762810 100%);
+    clip-path: polygon(0 0, 100% 0, 82% 100%, 18% 100%);
+    box-shadow: inset 0 12px 24px rgba(0,0,0,0.55);
+}
+
+.pot-dirt {
+    background: radial-gradient(ellipse at center, #422513 0%, #1c0c05 100%);
+}
+
+/* Gentle swaying animation after full bloom */
+@keyframes sway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(1.8deg); }
+}
+
+.sway-bouquet {
+    animation: sway 6s ease-in-out infinite alternate;
+    transform-origin: 200px 325px;
+}
+
+/* Custom Scrollbar for Modal */
+.custom-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 3px;
+}

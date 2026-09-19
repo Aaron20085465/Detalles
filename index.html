@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti 🌻 | Flores Amarillas</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Archivo CSS Personalizado -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="relative flex flex-col justify-between items-center py-6 px-4 min-h-screen select-none overflow-y-auto">
+
+    <!-- Background Canvas for Stars & Floating Particles -->
+    <canvas id="stars-canvas"></canvas>
+
+    <!-- Top Right Full Glowing Moon -->
+    <div class="absolute top-6 right-6 md:top-10 md:right-12 w-16 h-16 md:w-24 md:h-24 rounded-full moon z-0"></div>
+
+    <!-- MAIN INTERACTIVE CONTAINER -->
+    <main class="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center my-auto">
+        
+        <!-- HEADER TEXTS -->
+        <div class="space-y-2 mb-1">
+            <p class="font-cursive text-2xl md:text-3xl text-amber-200/90 tracking-wide">
+                Hay detalles que no se compran...
+            </p>
+            <h1 class="font-title text-4xl md:text-6xl font-bold text-amber-300 tracking-wider text-glow flex items-center justify-center gap-3">
+                Para ti <span class="text-3xl md:text-5xl inline-block animate-bounce">🌻</span>
+            </h1>
+            <p class="text-xs md:text-sm text-slate-300 font-light max-w-md mx-auto italic opacity-85 px-4">
+                Porque algunas personas merecen algo más que un simple regalo.
+            </p>
+        </div>
+
+        <!-- SUNFLOWERS ANIMATED CONTAINER -->
+        <div class="relative w-full h-[400px] md:h-[460px] flex justify-center items-end my-1">
+            
+            <!-- SVG Canvas for Stems and Sunflower Bouquet Emergence -->
+            <svg id="flower-svg" class="absolute bottom-16 w-full h-full max-w-md z-10 overflow-visible sway-bouquet" viewBox="0 0 400 400">
+                <defs>
+                    <!-- Dirt Soil Mask ensuring stems emerge cleanly from inside the pot opening -->
+                    <clipPath id="soil-clip">
+                        <rect x="0" y="0" width="400" height="326" />
+                    </clipPath>
+
+                    <!-- Gradient for Stems -->
+                    <linearGradient id="stem-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#143c16" />
+                        <stop offset="50%" stop-color="#34d399" />
+                        <stop offset="100%" stop-color="#064e3b" />
+                    </linearGradient>
+
+                    <!-- Gradient for Petals -->
+                    <linearGradient id="petal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffea66" />
+                        <stop offset="50%" stop-color="#f59e0b" />
+                        <stop offset="100%" stop-color="#b45309" />
+                    </linearGradient>
+
+                    <!-- Center Seeds Radial Gradient -->
+                    <radialGradient id="center-grad">
+                        <stop offset="0%" stop-color="#78350f" />
+                        <stop offset="70%" stop-color="#451a03" />
+                        <stop offset="100%" stop-color="#180600" />
+                    </radialGradient>
+                </defs>
+
+                <!-- Group clipped at soil level (y = 325) -->
+                <g clip-path="url(#soil-clip)">
+                    <g id="bouquet-container"></g>
+                </g>
+            </svg>
+
+            <!-- TERRACOTTA POT WITH VISIBLE DIRT OPENING -->
+            <div class="relative z-20 w-44 md:w-52 flex flex-col items-center">
+                <!-- Soil Surface Top Oval -->
+                <div class="w-full h-5 pot-dirt rounded-t-full border-b border-amber-950/40"></div>
+                <!-- Pot Rim -->
+                <div class="w-[108%] h-7 pot-rim rounded-md"></div>
+                <!-- Pot Base Body -->
+                <div class="w-full h-28 md:h-32 pot-body"></div>
+            </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="mt-2 mb-5 z-20 flex flex-wrap justify-center items-center gap-3">
+            <button id="open-btn" class="btn-gold text-amber-200 px-6 py-2.5 rounded-full font-medium text-sm md:text-base flex items-center gap-2 cursor-pointer transition-all">
+                <span class="text-red-400">❤️</span> Abrir mi pequeño detalle
+            </button>
+            <button id="replay-btn" title="Volver a hacer crecer las flores" class="btn-gold text-amber-300 px-3.5 py-2.5 rounded-full text-sm flex items-center justify-center cursor-pointer">
+                🔄 Replay
+            </button>
+        </div>
+
+        <!-- FOOTER TEXT -->
+        <div class="space-y-1 z-10">
+            <p class="text-xs md:text-sm text-slate-300 font-light italic">
+                Y si algún día estas flores desaparecen...
+            </p>
+            <p class="text-lg md:text-2xl font-title text-amber-300 font-semibold tracking-wide text-glow flex items-center justify-center gap-2">
+                el recuerdo siempre quedará. <span class="text-base">🌻</span>
+            </p>
+        </div>
+    </main>
+
+    <!-- FLOATING MUSIC TOGGLE BUTTON -->
+    <button id="music-toggle" title="Música ambiental" class="fixed bottom-6 right-6 z-30 w-12 h-12 rounded-full bg-slate-900/80 border border-amber-400/40 text-amber-300 flex items-center justify-center shadow-xl hover:scale-110 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+        </svg>
+    </button>
+
+    <!-- AQUÍ ESTÁ EL ELEMENTO DE AUDIO PARA LA CANCIÓN -->
+    <audio id="bg-music" loop src="flores_amarillas-mp3.mp3"></audio>
+
+    <!-- MODAL POPUP (PARCHMENT DEDICATION LETTER) -->
+    <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modal-card" class="modal-card relative w-full max-w-md rounded-2xl p-6 md:p-8 transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col justify-between border-2 border-amber-300/40">
+            
+            <!-- Close Button X -->
+            <button id="close-btn" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-amber-200/50 hover:bg-amber-300 text-stone-800 flex items-center justify-center font-bold text-lg transition-colors">
+                ✕
+            </button>
+
+            <!-- Corner Decorations -->
+            <div class="absolute top-2 left-2 text-xl opacity-60">🌻</div>
+            <div class="absolute top-2 right-12 text-xl opacity-60">🌿</div>
+            <div class="absolute bottom-2 left-2 text-2xl opacity-70">🌻</div>
+            <div class="absolute bottom-2 right-2 text-2xl opacity-70">🌿</div>
+
+            <!-- Scrollable Content -->
+            <div class="overflow-y-auto custom-scroll pr-2 space-y-4 my-2 text-center">
+                
+                <div class="text-3xl mb-1">🌻</div>
+                <h2 class="font-title text-2xl md:text-3xl font-bold text-amber-900 border-b border-amber-800/20 pb-2">
+                    Para ti
+                </h2>
+
+                <div class="space-y-3 text-sm md:text-base leading-relaxed text-stone-800 font-light">
+                    <p class="italic text-amber-900/80 font-medium">
+                        No quería darte solamente una flor...
+                    </p>
+
+                    <p>
+                        Quería darte algo que pudiera guardar un momento, una pequeña sorpresa que te hiciera sonreír y que, de alguna manera, te recordara que hay personas que hacen que nuestros días sean un poquito más bonitos.
+                    </p>
+
+                    <p>
+                        Por eso hice estas flores para ti. No se marchitan, no necesitan agua y espero que cada vez que las veas recuerdes este pequeño detalle. 🌻
+                    </p>
+
+                    <p>
+                        Quizás no sea el regalo más grande, pero sí está hecho con mucho cariño.
+                    </p>
+
+                    <p class="font-cursive text-xl md:text-2xl text-amber-900 font-bold pt-2">
+                        Porque no quería regalarte solamente una flor... quería regalarte un recuerdo. ❤️
+                    </p>
+                </div>
+
+                <div class="text-right pt-4 border-t border-amber-800/10">
+                    <p class="text-xs text-amber-900/70 uppercase tracking-widest">Con cariño,</p>
+                    <p class="font-cursive text-3xl font-bold text-amber-900">A....</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Archivo JS Personalizado -->
+    <script src="script.js"></script>
+</body>
+</html>
